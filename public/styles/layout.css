@@ -16,9 +16,12 @@ html {
 
 body {
   color: #545149;
-  background-color: #f4f1ec;
+  background-color: #007cbf;
   font-size: 24px;
   font-family: "Source Sans 3", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 
@@ -27,12 +30,8 @@ body {
  */
  main {
   width: 90%;
-  margin: 0 auto;
-  padding:20px;
   background-color: #007cbf;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  justify-content: flex-start;
  }

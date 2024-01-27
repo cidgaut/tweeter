@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/new-tweets.css" type="text/css" />
 
 
     <!-- External JS -->
@@ -52,9 +53,17 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-      <h1>Titles are great</h1>
-      <h2>This is good</h2>
-      <p>Just OK</p>
+      <section class="tweet-new">
+        <h2>Compose Tweet</h2>
+        <form class="tweet-form">
+          <textarea class="tweet-text" name="text" id="tweet-text"
+            placeholder="What are you humming about?"></textarea>
+          <div class= "bottom-tweet">
+            <button class="tweet-button" calltype="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
     </main>
   </body>
 </html>
