@@ -34,3 +34,7 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.tweet-new .bottom-tweet .counter.invalid {
+  color: red;
+}
