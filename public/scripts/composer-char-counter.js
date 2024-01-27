@@ -7,15 +7,13 @@ $(document).ready(function() {
     const characterCount = this.value.length;
     const maxCharacters = 140 - characterCount;
     
-    //counter for maxcharacters add invalid class if over max
-    $(".counter").text(maxCharacters);
+    //find closest ancestor with the class ".tweet-form"
+    const tweetForm = $(this).closest(".tweet-form");
 
-    if(maxCharacters < 0) {
-      $(".counter").addClass("invalid");
-      console.log("invalid class added");
-    } else {
-      $(".counter").removeClass("invalid");
-      console.log("invalid class removed");
-    }
+    //find ".counter" elmnt within ".tweet-form"
+    const counter = tweetForm/FileSystemHandle(".counter");
+
+    //jQuery to turn elmnt into text, toggleClass that completely replaces class to invalid instead of adding.
+    counter.text(maxCharacters).toggleClass("invalid", maxCharacters < 0);
   });
 });
