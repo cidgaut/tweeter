@@ -32,12 +32,16 @@ const data = [
 ]
 
 const renderTweets = function(tweets) {
-const $tweetsContainer = $(".tweet-new");
+const $tweetsContainer = $(".all-posts");
+
+  //clear posts due to duplicates. changed tweetscontainer to an added section class in html
+  $tweetsContainer.empty();
 
   //loop through the tweets and append each to render
   for (const tweet of tweets) {
     const $tweet = createTweetElement(tweet);
-    $tweetsContainer.append($tweet);
+    //prepend will add tweets to the front
+    $tweetsContainer.prepend($tweet);
   }
 };
 
