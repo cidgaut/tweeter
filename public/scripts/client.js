@@ -22,6 +22,8 @@ const $tweetsContainer = $(".all-posts");
 };
 
 const createTweetElement = function(tweet) {
+  //protection from users to submit html file type attacks through message submission post
+  const escapedText =$("<div>").text(tweet.content.text);
   const timeAgoString = timeago.format(tweet.created_at);
 let $tweet = $(`
 <article class="tweet">
@@ -32,7 +34,7 @@ let $tweet = $(`
           </div>  
           <p>${tweet.user.handle}</p>
         </div>
-        <p class="tweet-post">${tweet.content.text}</p>
+        <p class="tweet-post">${escapedText}</p>
         <hr></hr>
         <footer>
           <span class="time">${timeAgoString}</span>
