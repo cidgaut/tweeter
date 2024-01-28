@@ -66,5 +66,48 @@ let $tweet = $(`
 return $tweet;
 }
 
+//listen for submit
+$("#tweet-form").submit(function (event) {
+  //prevent default actions
+  event.preventDefault();
+  
+  //serialize data
+  const formData = $(this).serialize();
+
+  //POST to server
+  $.ajax({
+    method: "POST",
+    url: "/tweets",
+    data: formData,
+    success: function (response) {
+      //response for success
+      console.log("post success:", response)
+
+      loadTweets();
+    },
+    error: function (error) {
+      console.log("post error:", error)
+    },
+  });
+});
+
+const loadTweets = function () {
+  //retrieve tweets from server 
+  $.ajax({
+    method: "GET",
+    url: "/tweets",
+    success: function (response) {
+      console.log("get success:", response);
+
+      renderTweets(response);
+    },
+    error: function (error) {
+      console.log("get error:", error);
+    },
+  });
+};
+
+loadTweets();
+
 renderTweets(data);
 });
