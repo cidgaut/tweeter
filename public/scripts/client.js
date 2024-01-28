@@ -6,30 +6,6 @@
 
 // Fake data taken from initial-tweets.json
 $(document).ready(function() {
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
 
 const renderTweets = function(tweets) {
 const $tweetsContainer = $(".all-posts");
@@ -46,6 +22,7 @@ const $tweetsContainer = $(".all-posts");
 };
 
 const createTweetElement = function(tweet) {
+  const timeAgoString = timeago.format(tweet.created_at);
 let $tweet = $(`
 <article class="tweet">
         <div class="tweet-top">
@@ -58,7 +35,7 @@ let $tweet = $(`
         <p class="tweet-post">${tweet.content.text}</p>
         <hr></hr>
         <footer>
-          <span class="time">${tweet.created_at}</span>
+          <span class="time">${timeAgoString}</span>
           <div class="tweet-actions">
             <i class="fa-regular fa-bell"></i>
             <i class="fa-solid fa-retweet"></i>
@@ -74,6 +51,20 @@ return $tweet;
 $("#tweet-form").submit(function (event) {
   //prevent default actions
   event.preventDefault();
+
+  //prevent actions by verifying content
+  const formContent = $("#tweet-text").val();
+
+  //
+  if (!formContent) {
+    alert("I think you forgot to put eggs in your basket! (Metaphorically speaking)");
+    return;
+  }
+
+  if(formContent.length > 140) {
+    alert("Less is more. Tweet cannot be surpass 140 characters!");
+    return;
+  }
   
   //serialize data
   const formData = $(this).serialize();
