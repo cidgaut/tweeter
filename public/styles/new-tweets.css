@@ -38,3 +38,74 @@
 .invalid {
   color: red;
 }
+
+/* for user tweets */
+
+article {
+  border: 3px solid;
+  padding: 15px;
+  background-color: antiquewhite;
+  width: 100%;
+  height: fit-content;
+}
+
+article:hover {
+  box-shadow: 0 0 10px rgba(78, 44, 22, 0.459);
+}
+
+.tweet-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.user img {
+  height: 50px;
+  width: 50px;
+}
+
+.tweet-post {
+  display: flex;
+  justify-content: start;
+}
+
+hr {
+  width: 95%;
+  color: rgba(78, 44, 22, 0.459);
+  background-color: rgba(78, 44, 22, 0.459);
+  border: none;
+  height: 3px;
+}
+
+
+.tweet footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+
+  height: fit-content;
+}
+
+.time {
+  font-size: 12px;
+}
+
+.tweet-actions {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.tweet-actions i:hover {
+  color: blue;
+}
+
+
