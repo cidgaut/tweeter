@@ -42,6 +42,7 @@
 /* for user tweets */
 
 article {
+  margin-top: 15px;
   border: 3px solid;
   padding: 15px;
   background-color: antiquewhite;
@@ -104,6 +105,7 @@ hr {
   cursor: pointer;
 }
 
+/*action that happens for each individual in the classless i's*/
 .tweet-actions i:hover {
   color: blue;
 }
