@@ -1,32 +1,26 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
 
-// Fake data taken from initial-tweets.json
 $(document).ready(function() {
 
-const $errorMessage =$(".error-message");
-const renderTweets = function(tweets) {
-const $tweetsContainer = $(".all-posts");
+  const $errorMessage =$(".error-message");
+  const renderTweets = function(tweets) {
+  const $tweetsContainer = $(".all-posts");
 
   //clear posts due to duplicates. changed tweetscontainer to an added section class in html
   $tweetsContainer.empty();
 
-  //loop through the tweets and append each to render
-  for (const tweet of tweets) {
-    const $tweet = createTweetElement(tweet);
-    //prepend will add tweets to the front
-    $tweetsContainer.prepend($tweet);
-  }
-};
+    //loop through the tweets and append each to render
+    for (const tweet of tweets) {
+      const $tweet = createTweetElement(tweet);
+      //prepend will add tweets to the front
+      $tweetsContainer.prepend($tweet);
+    }
+  };
 
-const createTweetElement = function(tweet) {
-  //protection from users to submit html file type attacks through message submission post
-  const escapedText =$("<div>").text(tweet.content.text).html();
-  const timeAgoString = timeago.format(tweet.created_at);
-let $tweet = $(`
+  const createTweetElement = function(tweet) {
+    //protection from users to submit html file type attacks through message submission post
+    const escapedText =$("<div>").text(tweet.content.text).html();
+    const timeAgoString = timeago.format(tweet.created_at);
+    let $tweet = $(`
 <article class="tweet">
         <div class="tweet-top">
           <div class="user">
@@ -47,68 +41,67 @@ let $tweet = $(`
         </footer>
       </article>
 `)
-return $tweet;
-}
-
-//listen for submit
-$("#tweet-form").submit(function (event) {
-  //prevent default actions
-  event.preventDefault();
-
-  //hide error-message
-  $errorMessage.slideUp();
-
-  //prevent actions by verifying content
-  const formContent = $("#tweet-text").val();
-
-  //
-  if (!formContent) {
-    $errorMessage.text("I think you forgot to put eggs in your basket! (Metaphorically speaking)").slideDown();
-    return;
+    return $tweet;
   }
 
-  if(formContent.length > 140) {
-    $errorMessage.text("Less is more. Tweet cannot be surpass 140 characters!").slideDown();
+  //listen for submit
+  $("#tweet-form").submit(function (event) {
+    //prevent default actions
+    event.preventDefault();
+
+    //hide error-message
+    $errorMessage.slideUp();
+
+    //prevent actions by verifying content
+    const formContent = $("#tweet-text").val();
+
+      if (!formContent) {
+        $errorMessage.text("I think you forgot to put eggs in your basket! (Metaphorically speaking)").slideDown();
+      return;
+    }
+
+    if(formContent.length > 140) {
+      $errorMessage.text("Less is more. Tweet cannot be surpass 140 characters!").slideDown();
     return;
-  }
+    }
   
-  //serialize data
-  const formData = $(this).serialize();
+    //serialize data
+    const formData = $(this).serialize();
 
-  //POST to server
-  $.ajax({
-    method: "POST",
-    url: "/tweets",
-    data: formData,
-    success: function (response) {
-      //response for success
-      console.log("post success:", response)
+    //POST to server
+    $.ajax({
+      method: "POST",
+      url: "/tweets",
+      data: formData,
+      success: function (response) {
+        //response for success
+        console.log("post success:", response)
 
-      loadTweets();
-    },
-    error: function (error) {
-      console.log("post error:", error)
-    },
+        loadTweets();
+      },
+      error: function (error) {
+        console.log("post error:", error)
+      },
+    });
   });
-});
 
-const loadTweets = function () {
-  //retrieve tweets from server 
-  $.ajax({
-    method: "GET",
-    url: "/tweets",
-    success: function (response) {
-      console.log("get success:", response);
+  const loadTweets = function () {
+    //retrieve tweets from server 
+    $.ajax({
+      method: "GET",
+      url: "/tweets",
+      success: function (response) {
+        console.log("get success:", response);
 
-      renderTweets(response);
-    },
-    error: function (error) {
-      console.log("get error:", error);
-    },
-  });
-};
+        renderTweets(response);
+      },
+      error: function (error) {
+        console.log("get error:", error);
+      },
+    });
+  };
 
-loadTweets();
+  loadTweets();
 
 renderTweets(data);
 });
