@@ -7,6 +7,7 @@
 // Fake data taken from initial-tweets.json
 $(document).ready(function() {
 
+const $errorMessage =$(".error-message");
 const renderTweets = function(tweets) {
 const $tweetsContainer = $(".all-posts");
 
@@ -23,7 +24,7 @@ const $tweetsContainer = $(".all-posts");
 
 const createTweetElement = function(tweet) {
   //protection from users to submit html file type attacks through message submission post
-  const escapedText =$("<div>").text(tweet.content.text);
+  const escapedText =$("<div>").text(tweet.content.text).html();
   const timeAgoString = timeago.format(tweet.created_at);
 let $tweet = $(`
 <article class="tweet">
@@ -54,17 +55,20 @@ $("#tweet-form").submit(function (event) {
   //prevent default actions
   event.preventDefault();
 
+  //hide error-message
+  $errorMessage.slideUp();
+
   //prevent actions by verifying content
   const formContent = $("#tweet-text").val();
 
   //
   if (!formContent) {
-    alert("I think you forgot to put eggs in your basket! (Metaphorically speaking)");
+    $errorMessage.text("I think you forgot to put eggs in your basket! (Metaphorically speaking)").slideDown();
     return;
   }
 
   if(formContent.length > 140) {
-    alert("Less is more. Tweet cannot be surpass 140 characters!");
+    $errorMessage.text("Less is more. Tweet cannot be surpass 140 characters!").slideDown();
     return;
   }
   

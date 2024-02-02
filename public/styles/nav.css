@@ -3,7 +3,7 @@ nav {
   height: 120px;
   width: 100%;
   background-color: #4056A1;
-  color: #FFFFFF;
+  color:aliceblue;
   padding: 1.5em;
 }
 
@@ -23,4 +23,9 @@ nav {
   display: flex;
 }
 
-
+@media only screen and (max-width: 1023px) {
+  nav {
+    background-color: #007cbf;
+    background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+  }
+}

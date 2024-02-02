@@ -9,3 +9,13 @@ header {
   background-color: #007cbf;
   background-image: url("https://www.transparenttextures.com/patterns/dust.png");
 }
+
+@media only screen and (min-width: 1024px) {
+  header {
+    margin: 25px;
+    width: 300px;
+    border-radius: 25px;
+    
+
+  }
+}

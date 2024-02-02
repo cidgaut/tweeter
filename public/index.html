@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- App CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
@@ -40,23 +41,25 @@
         <i class="fa-solid fa-angles-down"></i>
       </div>
       </div>
-
     </nav> 
 
+    <section class="responsive-view">
     <header>
       <div>
           <img src="/images/profile-hex.png"> 
       </div>
       <br>
       <div>
-          <h2>Your Name</h2>
+          <h2>CodeNameCid</h2>
       </div>
   </header>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
+    <main>
       <section class="tweet-new">
-        <h2>Compose Tweet</h2>
+        <h2></h2>
+        <!--add error message-->
+        <div class="error-message"></div>
         <!--add id's for targetting actions w/ jQuery-->
         <form class="tweet-form" id="tweet-form">
           <textarea class="tweet-text" name="text" id="tweet-text"
@@ -71,5 +74,6 @@
       <section class="all-posts">
       </section>
     </main>
+    </section>
   </body>
 </html>
