@@ -77,6 +77,13 @@ $(document).ready(function() {
         //response for success
         console.log("post success:", response)
 
+        //clear text
+        $("#tweet-text").val("");
+
+        //reset character counter
+        const $counter = $("#tweet-form").find("output");
+        $counter.text(140);
+
         loadTweets();
       },
       error: function (error) {
